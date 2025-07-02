@@ -1,0 +1,69 @@
+
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+let arguments;
+
+{(function($) {
+
+	$.fn.initGalleryFancybox = function() {
+	    $('a.fancy-gallery', _____WB$wombat$check$this$function_____(this)).fancybox({
+	        caption : function( instance, item ) {
+	            var slideInfo = $('.slide-info', _____WB$wombat$check$this$function_____(this));
+	            if ($('> *', slideInfo).length) {
+	                return slideInfo.clone().html();
+	            }
+	        },
+	        onInit: function(instance) {
+	            instance.$refs.caption.addClass('fancybox-title');
+	            instance.$refs.caption.parent().addClass('slideinfo');
+	        }
+	    });
+	};
+
+	$.fn.initPortfolioFancybox = function() {
+		$('a.fancy, .fancy-link-inner a', _____WB$wombat$check$this$function_____(this)).fancybox();
+
+		$('.portfolio-item a.vimeo, .portfolio-item a.youtube', _____WB$wombat$check$this$function_____(this)).fancybox({
+			type: 'iframe'
+		});
+
+		$('.portfolio-item a.self_video', _____WB$wombat$check$this$function_____(this)).click(function(e) {
+			e.preventDefault();
+			var $a = $(this);
+			$.fancybox.open({
+				type: 'html',
+				maxWidth: 1200,
+				content: '<div id="fancybox-video"><video width="100%" height="100%" autoplay="autoplay" controls="controls" src="'+$a.attr('href')+'" preload="none"></video></div>',
+				afterShow: function(instance, current) {
+					$('video', current.$content).mediaelementplayer();
+				}
+			});
+		});
+	};
+
+	$.fn.initBlogFancybox = function() {
+		$('a.fancy, .fancy-link-inner a', _____WB$wombat$check$this$function_____(this)).fancybox();
+
+		$('.blog article a.youtube, .blog article a.vimeo', _____WB$wombat$check$this$function_____(this)).fancybox({
+			type: 'iframe'
+		});
+	};
+
+	$(document).initGalleryFancybox();
+	$(document).initPortfolioFancybox();
+	$(document).initBlogFancybox();
+
+	$('a.fancy, .fancy-link-inner a').fancybox();
+})(jQuery);
+
+
+}}
