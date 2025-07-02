@@ -11,6 +11,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.document_loaders import UnstructuredHTMLLoader  
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import pandas as pd
+from PIL import Image
 
 
 
@@ -135,15 +136,40 @@ def rag_chain():
     return run_with_sources
 
 # === Streamlit 界面 ===
-st.set_page_config(page_title="Portugal Golden Visa Q&A", page_icon="🌍")
-st.title("Portugal Golden Visa Intelligent Q&A")
+# 页面设置
+st.set_page_config(page_title="Portugal Golden Visa Q&A", page_icon="🌍", layout="centered")
 
-user_input = st.text_input("Enter your question (supports English and Chinese)", placeholder="Does the Portugal Golden Visa allow family immigration?")
+# 设置背景颜色为图片的淡米色
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #fdf7f2;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
+# 加载头像图片
+image = Image.open("assistant_avatar.png")  
+st.image(image, width=120)
+
+# 欢迎语
+st.markdown("""
+## 👋 Hi, I'm LusAI!
+**How can I help you today?**
+
+I’m an AI-powered assistant designed to answer your questions about the **Portugal Golden Visa** — including its requirements, benefits, application process, family migration rules, investment types, and more.
+""")
+
+# 用户输入
+user_input = st.text_input("💬 Ask your question below (English or Chinese supported):", 
+                           placeholder="e.g., Does the Golden Visa allow family members to immigrate?")
+
+# 回答区域
 if user_input:
     with st.spinner("Generating answer..."):
         rag_runner = rag_chain()
-        with st.empty():
-            for chunk in rag_runner(user_input):
-                st.markdown(chunk)
-                break  # Simulates streaming effect, can be extended to token-level output
+        answer = rag_runner(user_input)  # ✅ 直接运行并返回完整结果
+        st.markdown(answer)  # ✅ 显示完整答案
