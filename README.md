@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/58d5272a-60be-4918-9d51-4600f23299c5" alt="LusAI Assistant" width="600"/>
+  <img src="https://github.com/user-attachments/assets/58d5272a-60be-4918-9d51-4600f23299c5" alt="LusAI Assistant" width="400"/>
 </p>
 
-# LusAI Assistant for Golden Visa (Powered by RAG & Ollama)
+## LusAI Assistant for Golden Visa (Powered by RAG & Ollama)
 
 This project demonstrates a document ingestion pipeline for Retrieval-Augmented Generation (RAG) using the [LangChain](https://www.langchain.com/) framework with an [Ollama](https://ollama.com/) local LLM backend. The pipeline converts local unstructured files into vector embeddings and stores them in a Chroma vector database, enabling semantic search and question answering.
 
