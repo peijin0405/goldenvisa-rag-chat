@@ -12,7 +12,7 @@ This project demonstrates a document ingestion pipeline for Retrieval-Augmented 
 - **Ollama + LLM (e.g., Ollama3/Mistral)**: Local language model used as the reasoning engine.
 - **Chroma**: Embedded vector database for storing and retrieving document embeddings.
 - **FastEmbed**: Lightweight, high-speed embedding model for converting text to vector representations.
-- **Streamlit**: Can be added for a simple interactive front-end.
+- **Streamlit**: For a simple interactive front-end.
 
 ## 📁 Features
 
